@@ -1,11 +1,11 @@
-import BaseStore from "./BaseStore";
-import { TodoDto, TodoListView } from "../models/Todo";
-import FetchStore from "./FetchStore";
+import BaseStore from './BaseStore';
+import { TodoDto, TodoListView } from '../models/Todo';
+import FetchStore from './FetchStore';
 
 type TodosStoreState = {
   todos: TodoListView[];
   message: string;
-}
+};
 
 class TodosStore extends BaseStore<TodosStoreState> {
   label = 'TodosStore';

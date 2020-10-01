@@ -1,5 +1,5 @@
-import { action, computed, observable } from "mobx";
-import { AxiosError } from "axios";
+import { action, computed, observable } from 'mobx';
+import { AxiosError } from 'axios';
 
 export default class FetchStore<ResponseDto> {
   @observable

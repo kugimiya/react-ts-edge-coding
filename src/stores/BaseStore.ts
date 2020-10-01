@@ -1,10 +1,10 @@
-import { action, observable, toJS } from "mobx";
-import FetchStore from "./FetchStore";
-import {AxiosError} from "axios";
+import { action, observable, toJS } from 'mobx';
+import { AxiosError } from 'axios';
+import FetchStore from './FetchStore';
 
 export type CommitOptions = {
   specificPath: string;
-}
+};
 
 export type AsyncCommitOptions<K, L> = {
   promise: Promise<K>;
@@ -12,10 +12,10 @@ export type AsyncCommitOptions<K, L> = {
   commitOptions?: CommitOptions;
   onFinish?: () => void;
   fetch?: FetchStore<K>;
-}
+};
 
 export default class BaseStore<T extends object> {
-  label: string = 'Unlabeled Store';
+  label = 'Unlabeled Store';
 
   @observable
   state: T;

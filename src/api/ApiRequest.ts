@@ -1,5 +1,5 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {API_BASE_URL} from "../constants";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { API_BASE_URL } from '../constants';
 
 class ApiRequestClass {
   instance: AxiosInstance;
