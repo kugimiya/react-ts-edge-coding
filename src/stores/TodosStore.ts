@@ -1,20 +1,20 @@
 import BaseStore from './BaseStore';
 import { TodoDto, TodoListView } from '../models/Todo';
 import FetchStore from './FetchStore';
+import PaginationStore from './PaginationStore';
 
 type TodosStoreState = {
   todos: TodoListView[];
-  message: string;
 };
 
 class TodosStore extends BaseStore<TodosStoreState> {
-  label = 'TodosStore';
+  fetch: FetchStore<TodoDto[]> = new FetchStore<TodoDto[]>('TodosStoreFetch');
 
-  fetch: FetchStore<TodoDto[]> = new FetchStore<TodoDto[]>();
+  pagination: PaginationStore = new PaginationStore('TodosStorePagination');
 
   constructor() {
-    super({ todos: [], message: 'not good boy' });
+    super({ todos: [] }, 'TodosStore');
   }
 }
 
-export default new TodosStore();
+export default TodosStore;
