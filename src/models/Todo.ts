@@ -8,4 +8,5 @@ export interface TodoDto {
 export interface TodoListView {
   id: number;
   name: string;
+  checked: boolean;
 }

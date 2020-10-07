@@ -1,0 +1,10 @@
+.ItemWrapper {
+  padding: 12px;
+
+  width: 100%;
+  max-width: 320px;
+}
+
+.ItemWrapper:not(:first-child) {
+  margin-top: 12px;
+}

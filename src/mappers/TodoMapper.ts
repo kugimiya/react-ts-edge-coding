@@ -5,6 +5,7 @@ export const mapTodoDtoToListView = (rawData: TodoDto[]): TodoListView[] => {
   const schema: StrictSchema<TodoListView, TodoDto> = {
     id: 'id',
     name: 'title',
+    checked: 'completed',
   };
 
   return morphism(schema, rawData);

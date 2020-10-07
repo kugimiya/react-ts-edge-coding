@@ -1,7 +1,6 @@
-import BaseStore from './BaseStore';
+import { BaseStore, FetchStore, PaginationStore } from '@codeleaf-sdk/core/dist/store';
+import { action } from 'mobx';
 import { TodoDto, TodoListView } from '../models/Todo';
-import FetchStore from './FetchStore';
-import PaginationStore from './PaginationStore';
 
 type TodosStoreState = {
   todos: TodoListView[];
@@ -14,6 +13,15 @@ class TodosStore extends BaseStore<TodosStoreState> {
 
   constructor() {
     super({ todos: [] }, 'TodosStore');
+  }
+
+  @action.bound
+  handleChange(id: TodoListView['id'], checked: boolean): void {
+    this.commit({
+      todos: this.state.todos.map((tItem) => {
+        return tItem.id === id ? { ...tItem, checked } : tItem;
+      }),
+    });
   }
 }
 
