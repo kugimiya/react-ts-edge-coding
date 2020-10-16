@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import { FetchWrapper } from '@codeleaf-sdk/core/dist/components';
+import { FetchWrapper } from '@codeleaf-sdk/core';
 import { Stores } from '../../contexts';
 import TodoService from '../../api/TodoService';
 import { TodoDto } from '../../models/Todo';

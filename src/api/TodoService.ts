@@ -1,4 +1,4 @@
-import PaginationStore from '@codeleaf-sdk/core/dist/store/PaginationStore';
+import { PaginationStore } from '@codeleaf-sdk/core';
 import { TodoDto } from '../models/Todo';
 import ApiInstance from './ApiInstance';
 

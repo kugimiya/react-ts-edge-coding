@@ -1,5 +1,5 @@
-import { BaseStore, FetchStore, PaginationStore } from '@codeleaf-sdk/core/dist/store';
 import { action } from 'mobx';
+import { BaseStore, FetchStore, PaginationStore } from '@codeleaf-sdk/core';
 import { TodoDto, TodoListView } from '../models/Todo';
 
 type TodosStoreState = {
