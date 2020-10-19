@@ -1,6 +1,8 @@
 import { createContext } from 'react';
-import TodosStore from './stores/TodosStore';
+import ClientsStore from '@stores/ClientsStore';
+import AuthStoreInstance from '@stores/Auth';
 
 export const Stores = createContext({
-  todosStore: new TodosStore(),
+  clientsStore: new ClientsStore(),
+  authStore: AuthStoreInstance,
 });

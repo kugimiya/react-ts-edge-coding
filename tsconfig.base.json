@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@stores/*": [
+        "src/stores/*"
+      ],
+      "@sdk/*": [
+        "src/sdk/*"
+      ],
+      "@mapper/*": [
+        "src/mapper/*"
+      ],
+      "@models/*": [
+        "src/models/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ]
+    }
+},
+  "include": [
+    "src"
+  ]
+}
