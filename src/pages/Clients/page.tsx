@@ -5,6 +5,7 @@ import FetchWrapper from '@sdk/components/hoc/FetchWrapper';
 import ClientsTable from '@pages/Clients/components/ClientsTable';
 import { Stores } from '../../contexts';
 import ClientsService from '../../api/ClientsService';
+import LoadingCircularProgress from '../../components/LoadingCircularProgress';
 
 const Clients: FC = () => {
   const { clientsStore } = useContext(Stores);
@@ -21,6 +22,10 @@ const Clients: FC = () => {
       mapper: (mapped) => ({ clients: mapped }),
     });
   }, [clientsStore, fetch.isInitialized]);
+
+  if (!fetch.isInitialized) {
+    return <LoadingCircularProgress />;
+  }
 
   const TableComponent = (): ReactElement => (
     <ClientsTable
