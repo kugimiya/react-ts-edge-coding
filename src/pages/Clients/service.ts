@@ -1,11 +1,14 @@
-import { PaginationStore } from '@sdk/index';
+import { ApiRequest, PaginationStore } from '@sdk/index';
 import { Client, ClientDto, ClientsSearchDto } from '@models/Client';
 import { Request } from '@models/Request';
-import { clientIdsFromSearchMapper, clientMapper } from '../mappers/ClientsMappers';
-import ApiInstance from './ApiInstance';
+import { AuthDto } from '@models/Auth';
+import { clientIdsFromSearchMapper, clientMapper } from '../../mappers/ClientsMappers';
 
 export default class ClientsService {
-  static async getClients(pagination?: PaginationStore): Promise<Client[]> {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(readonly apiInstance: ApiRequest<AuthDto>) {}
+
+  async getClients(pagination?: PaginationStore): Promise<Client[]> {
     const rawSearchResult = await this.clientsSearch(pagination);
     const clientsIds = clientIdsFromSearchMapper(rawSearchResult.payload);
     const promises: Promise<ClientDto>[] = clientsIds.map((id) => this.getClient(id));
@@ -18,8 +21,8 @@ export default class ClientsService {
     return rawClients.map(clientMapper);
   }
 
-  static async getClient(clientId: number): Promise<ClientDto> {
-    const response = await ApiInstance.request<Request<ClientDto>>({
+  async getClient(clientId: number): Promise<ClientDto> {
+    const response = await this.apiInstance.request<Request<ClientDto>>({
       url: `/api/client`,
       method: 'GET',
       params: {
@@ -33,8 +36,8 @@ export default class ClientsService {
     return response.data.payload;
   }
 
-  static async clientsSearch(pagination?: PaginationStore): Promise<Request<ClientsSearchDto>> {
-    const response = await ApiInstance.request<Request<ClientsSearchDto>>({
+  async clientsSearch(pagination?: PaginationStore): Promise<Request<ClientsSearchDto>> {
+    const response = await this.apiInstance.request<Request<ClientsSearchDto>>({
       url: `/api/clients`,
       method: 'GET',
       params: pagination

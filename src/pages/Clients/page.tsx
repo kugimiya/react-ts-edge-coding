@@ -3,25 +3,24 @@ import { observer } from 'mobx-react';
 import { Client } from '@models/Client';
 import FetchWrapper from '@sdk/components/hoc/FetchWrapper';
 import ClientsTable from '@pages/Clients/components/ClientsTable';
-import { Stores } from '../../contexts';
-import ClientsService from '../../api/ClientsService';
+import { ClientsModule } from '@pages/Clients/index';
 import LoadingCircularProgress from '../../components/LoadingCircularProgress';
 
 const Clients: FC = () => {
-  const { clientsStore } = useContext(Stores);
-  const { clients, fetch, pagination } = clientsStore;
+  const { store, service } = useContext(ClientsModule.Context);
+  const { clients, fetch, pagination } = store;
 
   useEffect(() => {
     if (fetch.isInitialized) {
       return;
     }
 
-    clientsStore.asyncCommit<Client[]>({
-      promise: ClientsService.getClients(clientsStore.pagination),
-      fetch: clientsStore.fetch,
+    store.asyncCommit<Client[]>({
+      promise: service.getClients(pagination),
+      fetch,
       mapper: (mapped) => ({ clients: mapped }),
     });
-  }, [clientsStore, fetch.isInitialized]);
+  }, [fetch, fetch.isInitialized, pagination, service, store]);
 
   if (!fetch.isInitialized) {
     return <LoadingCircularProgress />;
@@ -36,9 +35,9 @@ const Clients: FC = () => {
       page={pagination.page}
       onChangePage={(page): void => {
         pagination.commit({ page });
-        clientsStore.asyncCommit<Client[]>({
-          promise: ClientsService.getClients(clientsStore.pagination),
-          fetch: clientsStore.fetch,
+        store.asyncCommit<Client[]>({
+          promise: service.getClients(pagination),
+          fetch,
           mapper: (mapped) => ({ clients: mapped }),
         });
       }}

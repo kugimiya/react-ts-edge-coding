@@ -7,11 +7,7 @@ type ClientsStoreState = {
 };
 
 export default class ClientsStore extends BaseStore<ClientsStoreState> {
-  fetch: FetchStore<Client[]> = new FetchStore<Client[]>('ClientsStoreFetch');
-
-  pagination: PaginationStore = new PaginationStore('ClientsStorePagination');
-
-  constructor() {
+  constructor(readonly fetch: FetchStore<Client[]>, readonly pagination: PaginationStore) {
     super({ clients: [] }, 'ClientsStore');
   }
 

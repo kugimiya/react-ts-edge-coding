@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import ReactDOM from 'react-dom';
 
 import { Box } from '@material-ui/core';
-import { Clients } from '@pages/Clients';
+import { ClientsModule } from '@pages/Clients';
 import { Login } from '@pages/Login';
 
 import { Stores } from './contexts';
@@ -21,7 +21,7 @@ const MainWrapper = observer(() => {
 
   return (
     <Box padding="24px">
-      <Clients />
+      <ClientsModule.Component />
     </Box>
   );
 });

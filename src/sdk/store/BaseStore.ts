@@ -16,7 +16,7 @@ export type AsyncCommitOptions<K, L> = {
 
 const debugAnyCommit = true;
 
-export default class BaseStore<T extends object> {
+export default abstract class BaseStore<T = any> {
   label = 'Unlabeled Store';
 
   @observable
