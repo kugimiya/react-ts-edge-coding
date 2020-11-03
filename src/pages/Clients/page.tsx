@@ -18,7 +18,7 @@ const Clients: FC = () => {
     store.asyncCommit<Client[]>({
       promise: service.getClients(pagination),
       fetch,
-      mapper: (mapped) => ({ clients: mapped }),
+      commitOptions: { specificPath: 'clients' }, // or "mapper: (mapped) => ({ clients: mapped })"
     });
   }, [fetch, fetch.isInitialized, pagination, service, store]);
 
