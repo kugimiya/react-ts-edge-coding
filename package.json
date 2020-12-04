@@ -54,6 +54,7 @@
     "eject": "react-scripts eject"
   },
   "eslintIgnore": [
+    "config-overrides.js",
     "node_modules",
     "dist",
     "build",
